@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NALRC Map</title>
+   <link rel="stylesheet" href="lib/leaflet/leaflet.css"/>
+   <link rel="stylesheet" href="css/main.css"/>
+</head>
+  <script src="lib/leaflet/leaflet.js"></script>
+  <script src="lib/leaflet.ajax.min.js"></script>
+  <script src="assets/json/africaData.js"></script>
+  <script src="assets/json/languageData.js"></script>
+  <script src="pages/countryPage.js"></script>
+  <script src="pages/countryMap.js"></script>
+  <script src="pages/languagePage.js"></script>
+  <script src="geoJson.js"></script>
+<body>
+  <div id="map"></div>
+  <div id="countryMapUi">
+    <p id="mouseOverCountryName"></p>
+    <p id="mouseOverCountryLanguages"></p>
+    <button id="backToCountryMap">Back To Country Map</button>
+    <div id="countryMapUiBackground"></div>
+  </div>
+  <div id="languageUi">
+    <p id="languageName">Yoruba</p>
+    <button id="brochure">To Language Brochure</button>
+    <div id="languageUiBackground"></div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+#map{
+	position: absolute;
+	height: 600px;
+	width: 800px;
+	z-index: 1;
+	top: 0;
+	left: 0;
+}
+
+#countryMapUi{
+	position: absolute;
+	height: 430px;
+	width: 255px;
+	top: 100px;
+	left: 510px;
+	z-index: 5;
+	transition: width .5s, left .5s;
+}
+
+#countryMapUiBackground{
+	position: absolute;
+	opacity: .7;
+	width: 100%;
+	height: 100%;
+	background-color: #f2a163;
+	z-index: 3;
+}
+
+#backToCountryMap{
+	position: absolute;
+	height: 60px;
+	width: 100px;
+	left: 500px;
+	top: 300px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	opacity: 0;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+.toLanguage{
+	position: absolute;
+	height: 25px;
+	width: 200px;
+	left: 100px;
+	top: 80px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	opacity: 1;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+#mouseOverCountryName{
+	position: absolute;
+	width: 100%;
+	height: 100px;
+	font-size: 30px;
+	color: #ffffff;
+	text-align: center;
+	z-index: 5;
+}
+
+#mouseOverCountryLanguages{
+	position: absolute;
+	top: 120px;
+	width: 100%;
+	height: 500px;
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	z-index: 5;
+}
+
+#languageUi{
+	position: absolute;
+	height: 430px;
+	width: 0px;
+	top: 100px;
+	left: 35px;
+	z-index: 5;
+	transition: width .5s, left .5s;
+	opacity: 0;
+	pointer-events: none;
+}
+
+#languageUiBackground{
+	position: absolute;
+	opacity: .7;
+	width: 100%;
+	height: 100%;
+	background-color: #d6ffda;
+	z-index: 3;
+}
+
+.languagePageCountryButton{
+	position: absolute;
+	height: 25px;
+	width: 250px;
+	left: 70px;
+	top: 80px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	opacity: 1;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+.languagePageBookButton{
+	position: absolute;
+	height: 25px;
+	width: 200px;
+	left: 400px;
+	top: 80px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	opacity: 1;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+#brochure{
+	position: absolute;
+	height: 60px;
+	width: 100px;
+	left: 500px;
+	top: 280px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+#languageName{
+	position: absolute;
+	width: 265px;
+	height: 100px;
+	font-size: 30px;
+	color: #464d59;
+	text-align: center;
+	z-index: 5;
+}
+
