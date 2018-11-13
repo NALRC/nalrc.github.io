@@ -74,7 +74,8 @@ function pickFillColor(feature){
     if(currentState == "countryMap"){
         color = feature.properties.isMouseOver ? '#a9c9fc' : '#ffec63';
     }if(currentState == "countryPage"){
-        color = feature.properties.isSelected ? '#a9c9fc' : '#b5b5b5';
+        var name = feature.properties.name_long;
+        color = name == currentCountry ? '#a9c9fc' : '#b5b5b5';
     }if(currentState == "languagePage"){
         var name = feature.properties.name_long;
         color = languageData.languages[currentLanguage].countries.includes(name) ? '#0c00ff' : '#b5b5b5';

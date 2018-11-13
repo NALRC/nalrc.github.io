@@ -4,6 +4,7 @@ var languagePageBookButtons = [];
 
 function openLanguagePage(event){
 	currentLanguage = event.target.innerHTML;
+	console.log("opening " + currentLanguage)
 	languageName.innerHTML = currentLanguage;
 	languageUi.style.width = '730px';
 	languageUi.style.opacity = 1;
@@ -11,16 +12,14 @@ function openLanguagePage(event){
 	languageUi.style.pointerEvents = 'auto';
 	var layers = [];
 	geojson.eachLayer(function (layer) {
-		var layerCountry = layer.feature.properties.name;
+		var layerCountry = layer.feature.properties.name_long;
     	if (languageData.languages[currentLanguage].countries.includes(layerCountry)) {
     		layers.push(layer);
-        	// Zoom to that layer.
-    		//map.flyToBounds(layer.getBounds());
+    		console.log("and " + layerCountry)
     	}
 
     });
     var featureGroup = L.featureGroup(layers);
-    //console.log(featureGroup, featureGroup.getBounds())
     map.flyToBounds(featureGroup.getBounds());
 	slideCloseCountryPage();
 	pageTransition("languagePage");
@@ -35,8 +34,8 @@ function closeLanguagePage(event){
 	languageUi.style.opacity = 0;
 	languageUi.style.pointerEvents = 'none';
 	openCountryPage(event);
-	languagePageCountryButtons = [];
-	languagePageBookButtons = [];
+	destroyButtons(languagePageCountryButtons);
+	destroyButtons(languagePageBookButtons);
 }
 
 function createBookButtons(){
