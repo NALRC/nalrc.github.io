@@ -1,16 +1,30 @@
 var currentState = "countryMap";
 var currentCountryNameText = document.getElementById("mouseOverCountryName");
 var currentCountryLanguagesText = document.getElementById("mouseOverCountryLanguages")
-var countryMapUi = document.getElementById("countryMapUi");
+var countryUi = document.getElementById("countryUi");
+var countryToListButton = document.getElementById("mapToListButton");
 var backToCountryMap = document.getElementById("backToCountryMap");
 var languageUi = document.getElementById("languageUi");
 var languageName = document.getElementById("languageName");
+var backToLanguageMap = document.getElementById("backToLanguageMap");
+var languageToListButton = document.getElementById("languageToListButton")
 var brochureButton = document.getElementById("brochure");
+var listUi = document.getElementById("listUi");
+var closeList = document.getElementById("closeList");
+var switchListButton = document.getElementById("switchList");
+var listUiTitle = document.getElementById("listTitle");
+var changeMapButton = document.getElementById("changeMapButton");
+var welcomePage = document.getElementById("welcomePage");
+var startButton = document.getElementById("startButton");
+var tickets = document.getElementById("tickets");
+
+var countryList = [];
+var languageList = [];
 
 var languageCountryGroups = [];
 
 var mainMapCoordinates = L.point(1, 38);
-var map = L.map('map', {zoomControl: false, zoomSnap: 0}).setView([mainMapCoordinates.x,mainMapCoordinates.y], 3.3);
+var map = L.map('map', {zoomControl: false, zoomSnap: 0}).setView([mainMapCoordinates.x,mainMapCoordinates.y], 1);
 var geojson;
 geojson = L.geoJson(countryData, {
     onEachFeature: onEachFeature,
@@ -21,6 +35,7 @@ initializeLayerStates();
 
 //popuate countries with language data
 for(var language in languageData.languages){
+    languageList.push(language);
     var currentLanguageData = languageData.languages[language];
     var lCountries = currentLanguageData.countries;
     var featGroup = [];
@@ -36,22 +51,22 @@ for(var language in languageData.languages){
    } 
 }
 
+backToCountryMap.onclick = function(){openMap("country")};
+countryToListButton.onclick = function(){countryToList()};
+closeList.onclick = closeListTo;
+switchList.onclick = function(){changeListMode()};
+languageToListButton.onclick = function(){languageToList()};
+changeMapButton.onclick = function(){switchMapMode()};
+backToLanguageMap.onclick = function(){openMap("language")};
+welcomePage.onclick = function(){closeWelcomePage()};
+tickets.onclick = function(){window.open("https://docs.google.com/document/d/1f-TydDXPLXDVi-X5PD98kBK73nvFInioeL-r_OIGNDY/edit?usp=sharing")};
 
-//map.on('click', onMapClick);
-
-// function onMapClick(e) {
-//     if(currentState == "countryPage"){
-//         openCountryMap();
-//     }
-// }
-
-backToCountryMap.onclick = function(){openCountryMap()};
 //click debouncing
 function pageTransition(destination){
     this.currentState = "transition";
     setTimeout(() => {
         this.currentState = destination;
-        resetStyles();
+        resetGeoStyles();
     }, 10);
 }
 
@@ -72,6 +87,27 @@ function createButtons(btnList, cssclass, data, parent, startTop, topInterval, c
         btn.innerHTML = text;
         btn.onclick = click;
         btnList.push(btn);
+    }
+}
+
+function createButtonRows(btnList, cssclass, data, parent, startTop, topInterval, startLeft, leftInterval, numColumn, click){
+    var x = 0;
+    var y = 0;
+    for(var ind in data){
+        var btn = document.createElement("BUTTON");
+        parent.appendChild(btn);
+        btn.className = cssclass;
+        btn.style.top = (startTop + topInterval * y) + 'px';
+        btn.style.left = (startLeft + leftInterval * x) + 'px';
+        var text = data[ind];
+        btn.innerHTML = text;
+        btn.onclick = click;
+        btnList.push(btn);
+        y += 1;
+        if(y >= numColumn){
+            y = 0;
+            x += 1;
+        }
     }
 }
 

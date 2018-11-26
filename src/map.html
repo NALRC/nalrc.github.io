@@ -11,22 +11,43 @@
   <script src="assets/json/africaData.js"></script>
   <script src="assets/json/languageData.js"></script>
   <script src="pages/countryPage.js"></script>
-  <script src="pages/countryMap.js"></script>
+  <script src="pages/mapPage.js"></script>
   <script src="pages/languagePage.js"></script>
+  <script src="pages/listPage.js"></script>
+  <script src="pages/welcomePage.js"></script>
   <script src="geoJson.js"></script>
 <body>
   <div id="map"></div>
-  <div id="countryMapUi">
+  <div id="mapUi">
+    <button id="changeMapButton">Change To Language Map</button>
+  </div>
+  <div id="listUi">
+    <p id="listTitle">List of Countries</p>
+    <button id="closeList">x</button>
+    <button id="switchList">To Language List</button>
+    <div id="listUiBackground"></div>
+  </div>
+  <div id="countryUi">
     <p id="mouseOverCountryName"></p>
     <p id="mouseOverCountryLanguages"></p>
     <button id="backToCountryMap">Back To Country Map</button>
+    <button id="mapToListButton">To List of Countries</button>
+
     <div id="countryMapUiBackground"></div>
   </div>
   <div id="languageUi">
-    <p id="languageName">Yoruba</p>
+    <p id="languageName"></p>
     <button id="brochure">To Language Brochure</button>
+    <button id="languageToListButton">To List of Languages</button>
+    <button id="backToLanguageMap">Back To Language Map</button>
     <div id="languageUiBackground"></div>
   </div>
+  <div id="welcomePage">
+    <p id="welcomeText">NALRC Map of African Languages</p>
+    <p id="startButton">Click Anywhere To Begin</p>
+    <img id="startLogo" src="assets/images/nalrcLogo.png"/>
+  </div>
+  <button id="tickets">Report Bugs or Suggest Changes</button>
   <script src="main.js"></script>
 </body>
 </html>

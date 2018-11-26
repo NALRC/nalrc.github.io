@@ -3,9 +3,13 @@ function mouseEnterCountry(e, feature){
     //console.log("entered " + e.target.feature.properties.name)
     if(currentState == "countryMap"){
         e.target.feature.properties.isMouseOver = true;
-        geojson.resetStyle(e.target);
-        setText(currentCountryNameText, e.target.feature.properties.name_long);
-        setText(currentCountryLanguagesText, formatLanguagesList(e.target.feature.properties.languages));
+        if(mapMode == "country"){
+            setText(currentCountryNameText, e.target.feature.properties.name_long);
+            setText(currentCountryLanguagesText, formatLanguagesList(e.target.feature.properties.languages));
+        }else{    
+            setCurrentLanguageMap(e.target.feature.properties.languages);
+        }
+        resetGeoStyles();
     }
 }
 
@@ -21,14 +25,15 @@ function mouseExitCountry(e, feature){
     //console.log("exited " + e.target.feature.properties.name)
     if(currentState == "countryMap"){
         e.target.feature.properties.isMouseOver = false;
-        geojson.resetStyle(e.target);
         setText(currentCountryNameText, "");
         setText(currentCountryLanguagesText, "");
+        languageName.innerHTML = "";
+        resetGeoStyles();
     }
 }
 
 function clickCountry(e, feature) {
-    openToCountryFromMap(e.target.feature);
+    mapMode == "country" ? openToCountryFromMap(e.target.feature) : openLanguagePage(languageName.innerHTML);
 }
 
 function onEachFeature(feature, layer) {
@@ -45,6 +50,7 @@ function initializeLayerStates(){
         props.isMouseOver = false;
         props.isSelected = false;
         props.languages = [];
+        countryList.push(props.name_long);
     });
 }
 
@@ -58,32 +64,60 @@ function resetLayerStates(){
 
 //rules for styling of geojson shapes
 function style(feature) {
+    var color = pickFillColor(feature);
     return {
-        fillColor: pickFillColor(feature),
+        fillColor: color.color,
         weight: 2,
         opacity: 1,
-        color: 'white',
+        color: '#91008d',
         dashArray: '3',
-        fillOpacity: 0.7
+        fillOpacity: color.opacity
     };
 }
 
 function pickFillColor(feature){
     var color;
-    //console.log(currentState)
-    if(currentState == "countryMap"){
-        color = feature.properties.isMouseOver ? '#a9c9fc' : '#ffec63';
-    }if(currentState == "countryPage"){
-        var name = feature.properties.name_long;
-        color = name == currentCountry ? '#a9c9fc' : '#b5b5b5';
-    }if(currentState == "languagePage"){
-        var name = feature.properties.name_long;
-        color = languageData.languages[currentLanguage].countries.includes(name) ? '#0c00ff' : '#b5b5b5';
+    var opacity = .8;
+    var name = feature.properties.name_long;
+    var langData = languageData.languages;
+    switch(currentState){
+        case "countryMap":
+            color = feature.properties.isMouseOver ? '#a9c9fc' : '#ffec63';
+            opacity = feature.properties.isMouseOver ? 1 : 0;
+            if(mapMode == "language"){
+                try{
+                    color = langData[languageName.innerHTML].countries.includes(name) ? '#a9c9fc' : '#ffec63';
+                    opacity = langData[languageName.innerHTML].countries.includes(name) ? 1 : 0;
+                }catch(e){}
+            }
+            break;
+        case "countryPage":
+            color = name == currentCountry ? '#a9c9fc' : '#b5b5b5';
+            opacity = name == currentCountry ? 1 : 0;
+            break;
+        case "languagePage":
+            color = langData[currentLanguage].countries.includes(name) ? '#0c00ff' : '#b5b5b5';
+            opacity = langData[currentLanguage].countries.includes(name) ? 1 : 0;
+            break;
+        case "list":
+            if(listMode == "country"){
+                color = name == listMouseOverName ? '#db2e64' : '#ffffff';
+                opacity = name == listMouseOverName ? 1 : 0;
+            }else{
+                try{
+                    color = langData[listMouseOverName].countries.includes(name) ? '#db2e64' : '#ffffff';
+                    opacity = langData[listMouseOverName].countries.includes(name) ? 1 : 0}
+                catch(error){
+                    color = '#ffffff';
+                    opacity = 0;}
+            }
+            break;
     }
-    return color;
+    var info = {'color': color, 'opacity': opacity};
+    return info;
 }
 
-function resetStyles(){
+function resetGeoStyles(){
     geojson.eachLayer((geo) =>{
         geojson.resetStyle(geo);
     });
