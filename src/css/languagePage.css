@@ -1,0 +1,204 @@
+#languageUi{
+	position: absolute;
+	height: 430px;
+	width: 0px;
+	top: 100px;
+	left: 35px;
+	z-index: 5;
+	transition: width .5s, left .5s;
+	opacity: 0;
+	pointer-events: none;
+}
+
+#languageName{
+	position: absolute;
+	width: 265px;
+	height: 100px;
+	font-size: 30px;
+	color: #464d59;
+	text-align: center;
+	z-index: 5;
+}
+
+
+#backToLanguageMap{
+	position: absolute;
+	height: 40px;
+	width: 40px;
+	left: 680px;
+	top: 10px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	opacity: 0;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+#languageNav{
+	position: absolute;
+	width: 100%;
+	height: 30px;
+	top: -30px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.languageNavButton{
+	position: absolute;
+	width: 33%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background-color: #d7e510;
+}
+
+.languageNavButtonActive{
+	position: absolute;
+	width: 33%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background-color: #f49e42;
+}
+
+.languageNavButton:hover{
+	background-color: #22e510;
+}
+
+#toPage1{
+	left: 0%;
+}
+#toPage2{
+	left: 33.333%;
+}
+#toPage3{
+	left: 66.666%;
+}
+
+#languagePage1{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#playAudioButton{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 30px;
+	left: 20px;
+	text-align: center;
+	background-color: #d7e510;
+	color: #ffffff:;
+	z-index: 6;
+}
+
+
+#playAudioButton:hover{
+	background-color: #22e510;
+
+}
+
+#languageRecording{
+	z-index: 6;
+}
+
+#targetText{
+	position: absolute;
+	left: 20px;
+}
+
+#englishText{
+	position: absolute;
+	left: 55%;
+}
+
+.languageUiText{
+	color: #000000;
+	z-index: 6;
+	top: 70px;
+	width: 40%;
+}
+
+#languagePage2{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+}
+
+#brochure{
+	position: absolute;
+	height: 30px;
+	width: 200px;
+	left: 400px;
+	top: 45px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+#languagePage3{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+}
+
+#languageToListButton{
+	position: absolute;
+	height: 60px;
+	width: 100px;
+	left: 500px;
+	top: 240px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+.languagePageCountryButton{
+	position: absolute;
+	height: 25px;
+	width: 250px;
+	left: 70px;
+	top: 80px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	opacity: 1;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+.languagePageBookButton{
+	position: absolute;
+	height: 25px;
+	width: 200px;
+	left: 400px;
+	top: 80px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	opacity: 1;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+
+
+#languageUiBackground{
+	position: absolute;
+	opacity: .7;
+	width: 100%;
+	height: 100%;
+	background-color: #d6ffda;
+	z-index: 3;
+}
+

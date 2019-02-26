@@ -7,210 +7,96 @@
 	left: 0;
 }
 
-#tickets{
+#topUi{
 	position: absolute;
-	top: 650px;
+	height: 45px;
+	width: 700px;
+	z-index: 5;
+	top: 0;
+	left: 50px;
+	transition: height .5s;
+}
+
+#mapToListButton{
+	width: 100px;
+	left: 150px;
+	top: 0px;
+}
+
+#infoButton{
+	width: 120px;
+	left: 290px;
+	top: 0px;
+}
+
+#contactUs{
+	width: 100px;
+	left: 450px;
+	top: 0px;
+}
+
+.topUiButton{
+	background-color: #6d0af5;
+	height: 100%;
+	position: absolute;
+	z-index: 6;
+	font-size: 15px;
+	color: #ffffff;
+	border: none;
+	outline: none;
+}
+
+.topUiButton:hover{
+	background-color: #5809c4;
 }
 
 #changeMapButton{
 	position: absolute;
-	top: 20px;
-	left: 550px;
-	width: 150px;
-	height: 40px;
-	background-color: #ff7279;
-	font-size: 14px;
-	color: #464d59;
-	opacity: 1;
-	transition: opacity .2s;
-	z-index: 7;
-}
-
-#countryUi{
-	position: absolute;
-	height: 430px;
-	width: 255px;
-	top: 100px;
-	left: 510px;
-	z-index: 5;
-	transition: width .5s, left .5s;
-}
-
-#countryMapUiBackground{
-	position: absolute;
-	opacity: .7;
-	width: 100%;
-	height: 100%;
-	background-color: #f2a163;
-	z-index: 3;
-}
-
-#backToCountryMap{
-	position: absolute;
-	height: 60px;
-	width: 100px;
+	top: 45px;
 	left: 500px;
-	top: 300px;
-	background-color: #e0e0e0;
-	font-size: 15px;
-	color: #464d59;
-	opacity: 0;
-	transition: opacity .2s;
-	z-index: 6;
-}
-
-#mapToListButton{
-	position: absolute;
-	height: 60px;
-	width: 100px;
-	left: 100px;
-	top: 240px;
-	background-color: #e0e0e0;
-	font-size: 15px;
-	color: #464d59;
-	transition: opacity .2s;
-	z-index: 6;
-}
-
-.toLanguage{
-	position: absolute;
-	height: 25px;
 	width: 200px;
-	left: 100px;
-	top: 80px;
-	background-color: #e0e0e0;
+	height: 30px;
+	background-color: #6d0af5;
+	transition: left 1s;
+	z-index: 7;
 	font-size: 15px;
-	color: #464d59;
-	opacity: 1;
-	transition: opacity .2s;
-	z-index: 6;
+	color: #ffffff;
+	border: none;
+	outline: none;
 }
 
-#mouseOverCountryName{
+#topUiTitle{
 	position: absolute;
 	width: 100%;
 	height: 100px;
 	font-size: 30px;
 	color: #ffffff;
 	text-align: center;
-	z-index: 5;
-}
-
-#mouseOverCountryLanguages{
-	position: absolute;
-	top: 120px;
-	width: 100%;
-	height: 500px;
-	font-size: 20px;
-	color: #ffffff;
-	text-align: center;
-	z-index: 5;
-}
-
-#languageUi{
-	position: absolute;
-	height: 430px;
-	width: 0px;
-	top: 100px;
-	left: 35px;
-	z-index: 5;
-	transition: width .5s, left .5s;
-	opacity: 0;
+	z-index: 7;
 	pointer-events: none;
 }
 
-#languageUiBackground{
+#topUiBody{
 	position: absolute;
-	opacity: .7;
-	width: 100%;
-	height: 100%;
-	background-color: #d6ffda;
-	z-index: 3;
+	width: 80%;
+	height: 400px;
+	left: 5%;
+	font-size: 20px;
+	color: #ffffff;
+	z-index: 7;
+	top: 70px;
+	pointer-events: none;
 }
 
-#backToLanguageMap{
-	position: absolute;
-	height: 60px;
-	width: 100px;
-	left: 500px;
-	top: 300px;
-	background-color: #e0e0e0;
-	font-size: 15px;
-	color: #464d59;
-	opacity: 0;
-	transition: opacity .2s;
-	z-index: 6;
-}
-
-#languageToListButton{
-	position: absolute;
-	height: 60px;
-	width: 100px;
-	left: 500px;
-	top: 240px;
-	background-color: #e0e0e0;
-	font-size: 15px;
-	color: #464d59;
-	transition: opacity .2s;
-	z-index: 6;
-}
-
-.languagePageCountryButton{
-	position: absolute;
-	height: 25px;
-	width: 250px;
-	left: 70px;
-	top: 80px;
-	background-color: #e0e0e0;
-	font-size: 15px;
-	color: #464d59;
-	opacity: 1;
-	transition: opacity .2s;
-	z-index: 6;
-}
-
-.languagePageBookButton{
-	position: absolute;
-	height: 25px;
-	width: 200px;
-	left: 400px;
-	top: 80px;
-	background-color: #e0e0e0;
-	font-size: 15px;
-	color: #464d59;
-	opacity: 1;
-	transition: opacity .2s;
-	z-index: 6;
-}
-
-#brochure{
-	position: absolute;
-	height: 30px;
-	width: 200px;
-	left: 400px;
-	top: 45px;
-	background-color: #e0e0e0;
-	font-size: 15px;
-	color: #464d59;
-	transition: opacity .2s;
-	z-index: 6;
-}
-
-#languageName{
-	position: absolute;
-	width: 265px;
-	height: 100px;
-	font-size: 30px;
-	color: #464d59;
-	text-align: center;
-	z-index: 5;
+#changeMapButton:hover{
+	background-color: #5809c4;
 }
 
 #listUi{
 	opacity: 0;
 	position: absolute;
-	top: 50px;
-	left: 50px;
+	top: 0px;
+	left: 0px;
 	width: 700px;
 	height: 500px;
 	z-index: 6;
@@ -226,15 +112,6 @@
 	z-index: 3;
 }
 
-#listTitle{
-	position: absolute;
-	width: 100%;
-	height: 100px;
-	font-size: 30px;
-	color: #ffffff;
-	text-align: center;
-	z-index: 7;
-}
 
 .countryListButton{
 	position: absolute;
@@ -279,7 +156,7 @@
 	color: #ffbcd2;
 }
 
-#closeList{
+#closeTopUiButton{
 	position: absolute;
 	top: 20px;
 	left: 600px;
@@ -288,14 +165,15 @@
 	background-color: #ff7279;
 	font-size: 14px;
 	color: #464d59;
-	opacity: 1;
+	opacity: 0;
 	transition: opacity .2s;
 	z-index: 7;
 	border: none;
 	outline: none;
+	pointer-events: none;
 }
 
-#closeList:hover{
+#closeTopUiButton:hover{
 	background-color: #fffde5;
 }
 
@@ -317,6 +195,93 @@
 
 #switchList:hover{
 	background-color: #fffde5;
+}
+
+#topUiBackground{
+	background-color: #6f0df2;
+	opacity: .7;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+
+#tickets{
+	position: absolute;
+	top: 650px;
+}
+
+
+#countryUi{
+	position: absolute;
+	height: 430px;
+	width: 255px;
+	top: 100px;
+	left: 510px;
+	z-index: 5;
+	transition: width .5s, left .5s;
+}
+
+#countryMapUiBackground{
+	position: absolute;
+	opacity: .7;
+	width: 100%;
+	height: 100%;
+	background-color: #f2a163;
+	z-index: 3;
+}
+
+
+#backToCountryMap{
+	position: absolute;
+	height: 40px;
+	width: 40px;
+	left: 680px;
+	top: 10px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	opacity: 0;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+
+.toLanguage{
+	position: absolute;
+	height: 25px;
+	width: 200px;
+	left: 100px;
+	top: 80px;
+	background-color: #e0e0e0;
+	font-size: 15px;
+	color: #464d59;
+	opacity: 1;
+	transition: opacity .2s;
+	z-index: 6;
+}
+
+#mouseOverCountryName{
+	position: absolute;
+	width: 100%;
+	height: 100px;
+	font-size: 30px;
+	color: #ffffff;
+	text-align: center;
+	z-index: 5;
+}
+
+#mouseOverCountryLanguages{
+	position: absolute;
+	top: 120px;
+	width: 100%;
+	height: 500px;
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	z-index: 5;
 }
 
 #welcomePage{
@@ -359,4 +324,11 @@
 	left: 115px;
 	width: 540px;
 	height: 600px;
+}
+
+#credit{
+	position: absolute;
+	top: 560px;
+	z-index: 20;
+	color: #ffffff;
 }

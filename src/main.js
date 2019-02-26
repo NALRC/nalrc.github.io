@@ -2,28 +2,51 @@ var currentState = "countryMap";
 var currentCountryNameText = document.getElementById("mouseOverCountryName");
 var currentCountryLanguagesText = document.getElementById("mouseOverCountryLanguages")
 var countryUi = document.getElementById("countryUi");
-var countryToListButton = document.getElementById("mapToListButton");
 var backToCountryMap = document.getElementById("backToCountryMap");
 var languageUi = document.getElementById("languageUi");
 var languageName = document.getElementById("languageName");
 var backToLanguageMap = document.getElementById("backToLanguageMap");
-var languageToListButton = document.getElementById("languageToListButton")
+var languagePageNav = document.getElementById("languageNav");
+var toPage1 = document.getElementById('toPage1');
+var toPage2 = document.getElementById('toPage2');
+var toPage3 = document.getElementById('toPage3');
+var languagePageButtons = [toPage1, toPage2, toPage3];
+var languagePage1 = document.getElementById('languagePage1');
+var languagePage2 = document.getElementById('languagePage2');
+var languagePage3 = document.getElementById('languagePage3');
+var languagePages = [languagePage1, languagePage2, languagePage3];
+var englishText = document.getElementById('englishText');
+var yorubaText = document.getElementById('yorubaText');
+var playAudioButton = document.getElementById('playAudioButton');
+var languageRecording = document.getElementById('languageRecording');
+var mapToListButton = document.getElementById("mapToListButton");
 var brochureButton = document.getElementById("brochure");
 var listUi = document.getElementById("listUi");
-var closeList = document.getElementById("closeList");
+var closeTopUiButton = document.getElementById("closeTopUiButton");
 var switchListButton = document.getElementById("switchList");
 var listUiTitle = document.getElementById("listTitle");
 var changeMapButton = document.getElementById("changeMapButton");
 var welcomePage = document.getElementById("welcomePage");
 var startButton = document.getElementById("startButton");
 var tickets = document.getElementById("tickets");
+var topUi = document.getElementById("topUi");
+var infoButton = document.getElementById("infoButton");
+var contactUs = document.getElementById("contactUs");
+
 
 var countryList = [];
 var languageList = [];
-
 var languageCountryGroups = [];
+var topUiButtons = [];
+topUiButtons.push(infoButton);
+topUiButtons.push(contactUs);
+topUiButtons.push(mapToListButton);
+topUiButtons.push(changeMapButton);
 
-var mainMapCoordinates = L.point(1, 38);
+
+var mapMode = "country";
+var mainMapCoordinates = L.point(5, 38);
+var mainMapZoom = 3.2;
 var map = L.map('map', {zoomControl: false, zoomSnap: 0}).setView([mainMapCoordinates.x,mainMapCoordinates.y], 1);
 var geojson;
 geojson = L.geoJson(countryData, {
@@ -52,22 +75,53 @@ for(var language in languageData.languages){
 }
 
 backToCountryMap.onclick = function(){openMap("country")};
-countryToListButton.onclick = function(){countryToList()};
-closeList.onclick = closeListTo;
+closeTopUiButton.onclick = closeTopUiTo;
 switchList.onclick = function(){changeListMode()};
-languageToListButton.onclick = function(){languageToList()};
+mapToListButton.onclick = function(){openListPage(mapMode)};
+infoButton.onclick = function(){openInfoPage()};
+contactUs.onclick = function(){openContactPage()};
 changeMapButton.onclick = function(){switchMapMode()};
 backToLanguageMap.onclick = function(){openMap("language")};
 welcomePage.onclick = function(){closeWelcomePage()};
 tickets.onclick = function(){window.open("https://docs.google.com/document/d/1f-TydDXPLXDVi-X5PD98kBK73nvFInioeL-r_OIGNDY/edit?usp=sharing")};
+toPage1.onclick = function(){openLanguagePageNum(0)};
+toPage2.onclick = function(){openLanguagePageNum(1)};
+toPage3.onclick = function(){openLanguagePageNum(2)};
+playAudioButton.onclick = function(){playLanguageAudio()};
+
 
 //click debouncing
 function pageTransition(destination){
-    this.currentState = "transition";
-    setTimeout(() => {
+    //this.currentState = "transition";
+    //setTimeout(() => {
         this.currentState = destination;
         resetGeoStyles();
-    }, 10);
+    //}, 10);
+}
+
+function openMap(mode){
+    try{
+        if(mode != null){
+            mapMode = mode;
+        }
+    }catch(error){}
+    topUi.style.opacity = 1;
+    topUi.style.pointerEvents = 'all';
+    var long = mapMode == "country" ? mainMapCoordinates.y : -5;
+    map.flyTo([mainMapCoordinates.x,long], mainMapZoom);
+
+    resetLayerStates();
+    pageTransition("countryMap");
+    countryUi.style.opacity = mapMode == "country" ? 1 : 0;
+    languageUi.style.opacity = mapMode == "language" ? 1 : 0;
+    closeCountryPageToMap();
+    closeLanguagePageToMap();
+    languageUi.style.pointerEvents = mapMode == "language" ? 'all' : 'none';
+    countryUi.style.pointerEvents = mapMode == "country" ? 'all' : 'none';
+    changeMapButton.style.left = mapMode == "country" ? '500px' : '0px';
+    var text = mapMode == "country" ? "Language" : "Country";
+    changeMapButton.innerHTML = "Change to " + text + " Map";
+     mouseExitCountry();
 }
 
 function setText(p, text){

@@ -24,7 +24,8 @@ function formatLanguagesList(list){
 function mouseExitCountry(e, feature){
     //console.log("exited " + e.target.feature.properties.name)
     if(currentState == "countryMap"){
-        e.target.feature.properties.isMouseOver = false;
+        try{e.target.feature.properties.isMouseOver = false;}catch(e){};
+        currentLanguage = "";
         setText(currentCountryNameText, "");
         setText(currentCountryLanguagesText, "");
         languageName.innerHTML = "";
@@ -70,7 +71,6 @@ function style(feature) {
         weight: 2,
         opacity: 1,
         color: '#91008d',
-        dashArray: '3',
         fillOpacity: color.opacity
     };
 }
@@ -99,7 +99,7 @@ function pickFillColor(feature){
             color = langData[currentLanguage].countries.includes(name) ? '#0c00ff' : '#b5b5b5';
             opacity = langData[currentLanguage].countries.includes(name) ? 1 : 0;
             break;
-        case "list":
+        case "topUi":
             if(listMode == "country"){
                 color = name == listMouseOverName ? '#db2e64' : '#ffffff';
                 opacity = name == listMouseOverName ? 1 : 0;

@@ -2,9 +2,11 @@ var currentLanguage;
 var languagePageCountryButtons = [];
 var languagePageBookButtons = [];
 
+
+
 function openLanguagePage(event){
 	closeMapUi();
-	languageToListButton.style.left = '500px';
+	openLanguagePageNum(0);
 	backToLanguageMap.style.pointerEvents = 'all';
 	backToLanguageMap.style.opacity = 1;
 	try{currentLanguage = event.target.innerHTML;}
@@ -15,8 +17,12 @@ function openLanguagePage(event){
 	languageUi.style.opacity = 1;
 	languageName.style.opacity = 1;
 	languageUi.style.pointerEvents = 'all';
+	englishText.innerHTML = languageData.languages['Yoruba'].text.english;
+	targetText.innerHTML = languageData.languages['Yoruba'].text.targetLanguage;
 	brochureButton.style.pointerEvents = 'all';
 	brochureButton.style.opacity = 1;
+	languagePageNav.style.opacity = 1;
+	languagePageNav.style.pointerEvents = "all";
 	var layers = [];
 	geojson.eachLayer(function (layer) {
 		var layerCountry = layer.feature.properties.name_long;
@@ -30,8 +36,16 @@ function openLanguagePage(event){
 	slideCloseCountryPage();
 	pageTransition("languagePage");
 	createBookButtons();
-	createButtons(languagePageCountryButtons, 'languagePageCountryButton', languageData.languages[currentLanguage].countries, languageUi, 80, 30, languageToCountry);
+	createButtons(languagePageCountryButtons, 'languagePageCountryButton', languageData.languages[currentLanguage].countries, languagePage3, 80, 30, languageToCountry);
 	brochureButton.onclick = function(){window.open('https://nalrc.indiana.edu/doc/brochures/'+currentLanguage.toLowerCase()+'.pdf')};
+}
+
+function playLanguageAudio(){
+	if(languageRecording.paused){
+		languageRecording.play();
+	}else{
+		languageRecording.pause();
+	}
 }
 
 function languageToCountry(event){
@@ -44,6 +58,15 @@ function closeLanguagePage(){
 	languageName.style.opacity = 0;
 	languageUi.style.opacity = 0;
 	languageUi.style.pointerEvents = 'none';
+	languagePageNav.style.opacity = 0;
+	languagePageNav.style.pointerEvents = "none";
+	backToLanguageMap.style.opacity = 0;
+	backToLanguageMap.style.pointerEvents = 'none';
+	for(var page in languagePages){
+		languagePages[page].style.opacity = 0;
+		languagePages[page].style.pointerEvents = 'none';
+		languagePageButtons[page].className = "languageNavButton";
+	}
 	removeLanguageButtons();
 }
 
@@ -59,10 +82,31 @@ function closeLanguagePageToMap(){
 	removeLanguageButtons();
 	brochureButton.style.opacity = 0;
 	backToLanguageMap.style.opacity = 0;
-	languageToListButton.style.left = '100px';
+	languagePageNav.style.opacity = 0;
+	languagePageNav.style.pointerEvents = "none";
 	backToLanguageMap.style.pointerEvents = 'none';
 	brochureButton.style.pointerEvents = 'none';
 	languageName.style.opacity = 1;
+	for(var page in languagePages){
+		languagePages[page].style.opacity = 0;
+		languagePages[page].style.pointerEvents = 'none';
+		languagePageButtons[page].className = "languageNavButton";
+	}
+}
+
+function openLanguagePageNum(num){
+	for(var page in languagePages){
+		if(num == page){
+			languagePages[page].style.opacity = 1;
+			languagePages[page].style.pointerEvents = 'all';
+			languagePageButtons[page].className = "languageNavButtonActive";
+
+		}else{
+			languagePages[page].style.opacity = 0;
+			languagePages[page].style.pointerEvents = 'none';
+			languagePageButtons[page].className = "languageNavButton";
+		}
+	}
 }
 
 function languageToList(){
@@ -80,7 +124,7 @@ function createBookButtons(){
 		}
 	}
 	if(buttons != []){
-		createButtons(languagePageBookButtons, 'languagePageBookButton', buttons, languageUi, 80, 30, openBook);
+		createButtons(languagePageBookButtons, 'languagePageBookButton', buttons, languagePage2, 80, 30, openBook);
 	}
 }
 
